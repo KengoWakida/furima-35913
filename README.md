@@ -30,20 +30,20 @@
 | prefecture_id   | integer    | null: false                    |
 | days_id         | integer    | null: false                    |
 | price           | integer    | null: false                    |
-| user_id         | references | null: false, foreign_key: true | 
+| user            | references | null: false, foreign_key: true | 
 
 ### Association 
 
 - has_one :order
-- has_many :users
+- belongs_to :users
 - has_many :comments
 
 
 ## orders テーブル (購入記録)
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| users_id        | references | null: false, foreign_key: true |
-| items_id        | references | null: false, foreign_key: true |
+| users           | references | null: false, foreign_key: true |
+| items           | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -61,7 +61,7 @@
 | address         | string     | null: false                   |
 | building        | string     |                               |
 | tel_number      | string     | null: false                   |
-| order_id        | references | null: false,foreign_key: true |
+| order           | references | null: false,foreign_key: true |
 
 
 ### Association
@@ -72,8 +72,8 @@
 | Column          | Type       | Options                         |
 | --------------- | ---------- | ------------------------------- |
 | comment         | text       | null: false                     |
-| user_id         | references | null: false,  foreign_key: true |
-| items_id        | references | null: false,  foreign_key: true |
+| user            | references | null: false,  foreign_key: true |
+| items           | references | null: false,  foreign_key: true |
 
 ### Association
 
