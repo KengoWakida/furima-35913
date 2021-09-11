@@ -1,6 +1,7 @@
 class CreateItems < ActiveRecord::Migration[6.0]
   def change
     create_table :items do |t|
+      t.text            :image,           null: false  #画像
       t.string          :product_name,    null: false  #商品名
       t.text            :explanation,     null: false  #説明
       t.integer         :category_id,     null: false  #カテゴリー
