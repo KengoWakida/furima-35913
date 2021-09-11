@@ -10,7 +10,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer         :prefecture_id,   null: false  #都道府県
       t.integer         :days_id,         null: false  #日数
       t.integer         :price,           null: false  #価格
-      t.references      :user,            null: false,forreign_key: true #ユーザーテーブル
+      #t.references      :user,            null: false, foreign_key: true #ユーザーテーブル
       t.timestamps
     end
   end
