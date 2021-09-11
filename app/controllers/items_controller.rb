@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(item_params)
-    binding.pry
+    #binding.pry
     if @item.save
       redirect_to root_path
     else

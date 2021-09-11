@@ -18,4 +18,6 @@ class Item < ApplicationRecord
   validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank"}
   #日数の選択が「--」の時は保存できないようにする
   validates :days_id, numericality: { other_than: 0 , message: "can't be blank"}
+  #価格は¥300〜¥9,999,999まで半角数値のみ保存
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "is invalid"}
 end
