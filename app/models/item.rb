@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_fee
   belongs_to :prefecture
   belongs_to :days
+  has_one_attached :image
 
     #バリデーション カラムが空では保存できない
     with_options presence: true do
