@@ -65,15 +65,35 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'price(販売価格)が¥300〜¥9,999,999の範囲外の数値の時は保存できない' do
+      it 'price(販売価格)が¥300より小さい数値の時は保存できない' do
         @item.price = '100'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
       end
-      it 'price(販売価格)半角数値ではない時は保存できない' do
+      it 'price(販売価格)が半角数値ではない時は保存できない' do
         @item.price = '５００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'price(販売価格)が半角英数混合の時は保存できない' do
+        @item.price = '1000yen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'price(販売価格)が半角英語だけの時は保存できない' do
+        @item.price = 'thousandyen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'price(販売価格)が¥9,999,999より大きい時は保存できない' do
+        @item.price = 'thousandyen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is invalid")
+      end
+      it 'userが紐づいていなければ出品できない' do
+        @item.user_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end

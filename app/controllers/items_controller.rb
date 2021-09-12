@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  #ログインしていないユーザーをログイン画面に遷移
+  before_action :authenticate_user! ,only: [:new]
+
   def index
     @items = Item.order("created_at DESC")
 
@@ -10,6 +13,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.create(item_params)
+    binding.pry
     if @item.save
       redirect_to root_path
     else
