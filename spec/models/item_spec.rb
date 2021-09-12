@@ -28,7 +28,7 @@ RSpec.describe Item, type: :model do
       it 'pruduct_name（商品名）が空の時は保存できない' do
         @item.product_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("ProductName can't be blank")
+        expect(@item.errors.full_messages).to include("Product name can't be blank")
       end
       it 'explanation(商品の説明)が空の時は保存できない' do
         @item.explanation = ''
@@ -38,27 +38,27 @@ RSpec.describe Item, type: :model do
       it 'category_id（カテゴリー）が選択されていない時は保存できない' do
         @item.category_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("CategoryId can't be blank")
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'status_id(商品の状態）が選択されていない時は保存できない' do
         @item.status_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("StatusId can't be blank")
+        expect(@item.errors.full_messages).to include("Status can't be blank")
       end
       it 'delivery_fee_id(配送料の負担)が選択されていない時は保存できない' do
         @item.delivery_fee_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("DeliveryFeeId can't be blank")
+        expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
       end
       it 'prefecture_id(発送元の地域)が選択されていない時は保存できない' do
         @item.prefecture_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("PrefecutureId can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'days_id(発送までの日数)が選択されていない時は保存できない' do
         @item.days_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include("DaysId can't be blank")
+        expect(@item.errors.full_messages).to include("Days can't be blank")
       end
       it 'price(販売価格)からの時は保存できない' do
         @item.price = ''
@@ -68,12 +68,12 @@ RSpec.describe Item, type: :model do
       it 'price(販売価格)が¥300〜¥9,999,999の範囲外の数値の時は保存できない' do
         @item.price = '100'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("Price is invalid")
       end
       it 'price(販売価格)半角数値ではない時は保存できない' do
-        @item.price = '100円'
+        @item.price = '５００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("Price is invalid")
       end
     end
   end
