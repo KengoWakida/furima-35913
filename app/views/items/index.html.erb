@@ -125,6 +125,37 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle" >
       新規投稿商品
+      <div class = "contents row">
+        <% @items.each do |item| %>
+        <li class='list'>
+          <%= link_to "#" do %>
+          <%# ①商品画像 %>
+          <div class='item-img-content'>
+            <%= image_tag item.image , class: "item-img"%>
+            <%# if 購入記録があったら %>
+              <%# ②「sold out」表示 %>
+              <div class='sold-out'>
+                <span>Sold Out!!</span>
+              </div>
+            <%# end%>
+          <div class='item-info'>
+            <h3 class='item-name'>
+            <%# ③商品名 %>
+              <%= item.product_name %>
+            </h3>
+            <div class='item-price'>
+            <%# ④商品の値段 %><%# ⑤商品の配送料負担 %>
+              <span><%= item.price %>円<br>
+              <%= item.delivery_fee_id %></span>
+              <div class='star-btn'>
+                <%= image_tag "star.png", class:"star-icon" %>
+                <span class='star-count'>0</span>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        </li>
+     <% end %> 
     </div>
     <ul class='item-lists'>
 
