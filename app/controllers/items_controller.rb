@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.order("created_at DESC")
     @items = Item.all
+    @items_count = Item.count
   end
 
   def new
