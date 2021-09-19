@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   #ログインしていないユーザーをログイン画面に遷移
-  before_action :authenticate_user! ,only: [:new]
+  before_action :authenticate_user! ,only: [:new,:edit]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -29,13 +29,12 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    binding.pry
-    if item.save
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
       redirect_to root_path
     else
-      render :new
+      render :edit
     end
   end
 
