@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   #ログインしていないユーザーをログイン画面に遷移
-  before_action :authenticate_user! ,only: [:new,:edit]
+  before_action :authenticate_user! ,only: [:new,:edit,:destroy]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -36,6 +36,15 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :edit
+    end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    #ログインユーザーと商品出品者が同じ場合
+    if current_user.id == item.user_id  
+      item.destroy
+      redirect_to root_path
     end
   end
 
