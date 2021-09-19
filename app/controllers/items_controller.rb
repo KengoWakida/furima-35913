@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   #ログインしていないユーザーをログイン画面に遷移
-  before_action :authenticate_user! ,only: [:new,:edit]
+  before_action :authenticate_user! ,only: [:new,:edit,:destroy]
 
   def index
     @items = Item.all.order("created_at DESC")
