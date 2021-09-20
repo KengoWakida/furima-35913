@@ -14,7 +14,7 @@ class OrderShipping
 
 def save
   #購入記録を保存する
-  Order.create(user_id: user_id, item_id: item_id)
+  @order = Order.create(user_id: user_id, item_id: item_id)
   #発送先情報を保存する
   Shipping.create(postal_code: postal_code, prefecture_id: prefecture_id, unicipality: unicipality, address: address, building: building, tel_number: tel_number, order_id: order.id)
 end
