@@ -10,7 +10,6 @@ class OrderShipping
     validates :address
     #電話番号は10桁または11桁の整数
     validates :tel_number ,numericality: {only_integer: true , greater_than_or_equal_to: 0000000000, less_than_or_equal_to: 99999999999, message: 'is invalid'}
-    #validates :order_id
   end
 
 def save

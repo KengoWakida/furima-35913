@@ -4,7 +4,7 @@ RSpec.describe Shipping, type: :model do
   describe '配送先情報の保存' do
     context '配送先情報が保存できる場合' do
       it 'すべての項目
-        post_code(郵便番号)、
+        postal_code(郵便番号)、
         prefecture_id(都道府県)、
         unicipality(市区町村)、
         address(番地)、
@@ -13,7 +13,7 @@ RSpec.describe Shipping, type: :model do
         が正しく入力されている場合、保存できる' do
       end
       it 'すべての項目
-        post_code(郵便番号)、
+        postal_code(郵便番号)、
         prefecture_id(都道府県)、
         unicipality(市区町村)、
         address(番地)、
@@ -26,16 +26,16 @@ RSpec.describe Shipping, type: :model do
       end
     end
     context '配送先情報が保存されない場合' do
-      it 'post_code(郵便番号)が空欄の場合、保存できない' do
+      it 'postal_code(郵便番号)が空欄の場合、保存できない' do
         
       end
-      it 'post_code(郵便番号)にハイフン（-）がない場合、保存できない' do
+      it 'postal_code(郵便番号)にハイフン（-）がない場合、保存できない' do
         
       end
-      it 'post_code(郵便番号)が英字の場合、保存できない' do
+      it 'postal_code(郵便番号)が英字の場合、保存できない' do
         
       end
-      it 'post_code(郵便番号)が全角の場合、保存できない' do
+      it 'postal_code(郵便番号)が全角の場合、保存できない' do
         
       end
       it 'prefecture_id(都道府県)が選択されていない場合、保存できない' do
@@ -62,10 +62,7 @@ RSpec.describe Shipping, type: :model do
       it 'tel_number(電話番号)が英字の場合、保存できない' do
         
       end
-      it 'item(商品情報)が紐づいていない場合、保存できない' do
-        
-      end
-      it 'user(ユーザー情報)が紐づいていない場合、保存できない' do
+      it 'order(購入情報)が紐づいていない場合、保存できない' do
         
       end
     end
