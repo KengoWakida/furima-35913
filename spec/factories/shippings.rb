@@ -5,7 +5,7 @@ FactoryBot.define do
     unicipality     {'射水市'}
     address         {'太閤山１丁目31−5'}
     building        {'フレンドハイツ'}
-    tel_number      {'09039307121'}
+    tel_number      {'0903930712'}
     association :order
     end
   end
