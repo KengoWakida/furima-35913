@@ -9,7 +9,9 @@ class OrderShipping
     validates :unicipality
     validates :address
     #電話番号は10桁または11桁の整数→修正が必要
-    validates :tel_number  , format: {with: /\A[0-9]{10,11}\z/, message: "is invalid"}    #numericality:  # {only_integer: true , greater_than_or_equal_to: 0000000000, less_than_or_equal_to: 99999999999, message: 'is invalid'}
+    validates :tel_number  , format: {with: /\A[0-9]{10,11}\z/, message: "is invalid"}
+    validates :item_id
+    validates :user_id
   end
 
 def save
