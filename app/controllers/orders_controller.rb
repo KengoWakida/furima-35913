@@ -9,7 +9,6 @@ class OrdersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @order_shipping = OrderShipping.new(order_params)
-    binding.pry
     if @order_shipping.valid?
       @order_shipping.save
       redirect_to root_path
