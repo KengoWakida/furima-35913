@@ -7,6 +7,5 @@ FactoryBot.define do
     building        {'フレンドハイツ'}
     tel_number      {'0903930712'}
     association :order
-    end
   end
 end

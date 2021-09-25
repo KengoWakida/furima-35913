@@ -1,15 +1,15 @@
 class OrderShipping
   include ActiveModel::Model
-  attr_accessor   :postal_code, :prefecture_id, :unicipality, :address, :building, :tel_number, :item_id ,:user_id
+  attr_accessor   :authenticity_token, :postal_code, :prefecture_id, :unicipality, :address, :building, :tel_number, :item_id ,:user_id
   
   with_options presence: true do
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is _invalid. Include hyphen(-)"}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     #都道府県の選択が「--」の時は保存できないようにする
     validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank"}
     validates :unicipality
     validates :address
-    #電話番号は10桁または11桁の整数
-    validates :tel_number ,numericality: {only_integer: true , greater_than_or_equal_to: 0000000000, less_than_or_equal_to: 99999999999, message: 'is invalid'}
+    #電話番号は10桁または11桁の整数→修正が必要
+    validates :tel_number  ,numericality: {only_integer: true , greater_than_or_equal_to: 0000000000, less_than_or_equal_to: 99999999999, message: 'is invalid'}
   end
 
 def save
