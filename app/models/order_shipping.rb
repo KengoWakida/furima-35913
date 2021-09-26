@@ -1,6 +1,6 @@
 class OrderShipping
   include ActiveModel::Model
-  attr_accessor   :token, :postal_code, :prefecture_id, :unicipality, :address, :building, :tel_number, :item_id ,:user_id
+  attr_accessor   :token, :postal_code, :prefecture_id, :unicipality, :address, :building, :tel_number, :item_id ,:price, :user_id
   
   with_options presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
@@ -11,6 +11,7 @@ class OrderShipping
     #電話番号は10桁または11桁の整数→修正が必要
     validates :tel_number  , format: {with: /\A[0-9]{10,11}\z/, message: "is invalid"}
     validates :item_id
+    validates :price
     validates :user_id
   end
 

@@ -9,8 +9,14 @@ class OrdersController < ApplicationController
   def create
     @item = Item.find(params[:item_id])
     @order_shipping = OrderShipping.new(order_params)
-    
     if @order_shipping.valid?
+      Payjp.api_key = "sk_test_066e2cad8322cb7883f05d96"    #テスト秘密鍵
+      Payjp::Charge.create(
+        amount: order_params[:price],                       #商品の価格
+        card: order_params[:token],                         #カードトークン
+        currency: 'jpy'                                     #通貨 円
+      )
+      binding.pry
       @order_shipping.save
       redirect_to root_path
     else
@@ -21,6 +27,8 @@ class OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order_shipping).permit(:postal_code,:prefecture_id,:unicipality,:address,:building,:tel_number).merge(item_id: @item.id,user_id: current_user.id,token: params[:token])
+    params.require(:order_shipping)\
+          .permit(:postal_code,:prefecture_id,:unicipality,:address,:building,:tel_number)\
+          .merge(item_id: @item.id,price: @item.price, user_id: current_user.id,token: params[:token])
   end
 end
