@@ -3,15 +3,16 @@ class OrderShipping
   attr_accessor   :token, :postal_code, :prefecture_id, :unicipality, :address, :building, :tel_number, :item_id ,:price, :user_id
   
   with_options presence: true do
+    validates :token     #クレジットカードのトークン
+    validates :price     #商品の価格
+    #配送先情報
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    #都道府県の選択が「--」の時は保存できないようにする
-    validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank"}
+    validates :prefecture_id, numericality: { other_than: 0 , message: "can't be blank"}  #都道府県の選択が「--」の時は保存できない
     validates :unicipality
     validates :address
-    #電話番号は10桁または11桁の整数→修正が必要
-    validates :tel_number  , format: {with: /\A[0-9]{10,11}\z/, message: "is invalid"}
+    validates :tel_number  , format: {with: /\A[0-9]{10,11}\z/, message: "is invalid"}    #電話番号は10桁または11桁の整数→修正が必要
+    #配送先情報
     validates :item_id
-    validates :price
     validates :user_id
   end
 
