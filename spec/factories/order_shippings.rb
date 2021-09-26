@@ -6,6 +6,7 @@ FactoryBot.define do
       address         {'太閤山１丁目31−5'}
       building        {'フレンドハイツ'}
       tel_number      {'0903930712'}
-      #association :order
+      token           {"tok_abcdefghijk00000000000000000"}
+      price           {5000}
   end
 end

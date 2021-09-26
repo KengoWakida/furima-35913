@@ -18,6 +18,8 @@ RSpec.describe OrderShipping, type: :model do
           address(番地)、
           building(建物)、
           tel_number(電話番号)（10桁の入力）
+          price(商品の価格)、
+          token
           が正しく入力されている場合、保存できる' do
           expect(@order_shipping).to be_valid
         end
@@ -28,6 +30,8 @@ RSpec.describe OrderShipping, type: :model do
           address(番地)、
           building(建物)、
           tel_number(電話番号)（11桁の入力）
+          price(商品の価格)、
+          token
           が正しく入力されている場合、保存できる' do
           @order_shipping.tel_number = '09039307121'
           expect(@order_shipping).to be_valid
@@ -108,6 +112,18 @@ RSpec.describe OrderShipping, type: :model do
           @order_shipping.valid?
           expect(@order_shipping.errors.full_messages).to include("Item can't be blank")
         end
+        it 'price(商品の価格)が空の場合、保存できない' do
+          @order_shipping.price = nil
+          @order_shipping.valid?
+          expect(@order_shipping.errors.full_messages).to include("Price can't be blank")
+        end
+        it 'tokenが空の場合、保存できない' do
+          @order_shipping.token = nil
+          @order_shipping.valid?
+          expect(@order_shipping.errors.full_messages).to include("Token can't be blank")
+        end
+
+
       end
     end
   end
