@@ -29,9 +29,10 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    #商品が購入済の時はトップ画面に遷移
     @order_count = Order.where(item_id: params[:id]).count
     redirect_to root_path unless current_user.id == @item.user_id
-    if @order_count > 0 #商品が購入済の時
+    if @order_count > 0 
       redirect_to root_path 
     end
   end

@@ -1,9 +1,19 @@
 class OrdersController < ApplicationController
+ #ログインしていないユーザーをログイン画面に遷移
+ before_action :authenticate_user! ,only: [:index]
+
   def index
     #フォームオブジェクトのインスタンス生成
     @item = Item.find(params[:item_id])
     @order_shipping = OrderShipping.new
-    
+    #商品が購入済の時はトップ画面に遷移
+    @order_count = Order.where(item_id: params[:item_id]).count
+    if (@order_count > 0) || (current_user.id == @item.user_id)
+      redirect_to root_path 
+    end
+    # if current_user.id == @item.user_id
+    #   redirect_to root_path 
+    # end
   end
 
   def create
@@ -14,7 +24,6 @@ class OrdersController < ApplicationController
       @order_shipping.save
       redirect_to root_path
     else
-      
       render :index
     end
   end
