@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all.order("created_at DESC")
     @items_count = Item.count
+    @orders = Order.all
   end
 
   def new
@@ -22,11 +23,18 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @order_count = Order.where(item_id: @item.id).count
+ 
   end
 
   def edit
     @item = Item.find(params[:id])
+    #商品が購入済の時はトップ画面に遷移
+    @order_count = Order.where(item_id: params[:id]).count
     redirect_to root_path unless current_user.id == @item.user_id
+    if @order_count > 0 
+      redirect_to root_path 
+    end
   end
 
   def update
