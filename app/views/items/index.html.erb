@@ -125,6 +125,7 @@
     <h2 class='title'>ピックアップカテゴリー</h2>
     <div class="subtitle" >
       新規投稿商品
+    </div>
       <ul class='item-lists'>
         <% if @items_count >= 1 %> 
           <% @items.each do |item| %>
@@ -184,7 +185,7 @@
         <%# //商品がない場合は以下のダミー商品が表示される %>
         <% end %>
       </ul>
-  </div>
+  
   <%# /商品一覧 %>
 </div>
 
